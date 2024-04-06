@@ -21,13 +21,10 @@ export class UpdateUserHandler implements ICommandHandler<UpdateUserCommand> {
     const {
       deletedAt,
       email,
-      //firstName,
-      //lastName,
+    fullName,
       isVerified,
       password,
-      //accounts,
-      //phoneNumber,
-      //bio,
+      phoneNumber,
     } = updateUserDto;
 
     const user: UserEntity = await this.queryBus.execute(
@@ -38,25 +35,13 @@ export class UpdateUserHandler implements ICommandHandler<UpdateUserCommand> {
       user.email = email;
     }
 
-    //if (firstName != null) {
-    //  user.firstName = firstName;
-    //}
+    if (fullName != null) {
+      user.fullName = fullName;
+    }
 
-    //if (lastName != null) {
-    //  user.lastName = lastName;
-    //}
-
-    //if (phoneNumber != null) {
-    //  user.phoneNumber = phoneNumber;
-    //}
-
-    //if (accounts != null) {
-    //  user.accounts = accounts;
-    //}
-
-    //if (bio != null) {
-    //  user.bio = bio;
-    //}
+    if (phoneNumber != null) {
+      user.phoneNumber = phoneNumber;
+    }
 
     if (isVerified != null) {
       user.isVerified = isVerified;

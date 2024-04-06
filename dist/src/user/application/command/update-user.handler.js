@@ -26,10 +26,16 @@ let UpdateUserHandler = class UpdateUserHandler {
         this.userRepository = userRepository;
     }
     async execute({ id, updateUserDto }) {
-        const { deletedAt, email, isVerified, password, } = updateUserDto;
+        const { deletedAt, email, fullName, isVerified, password, phoneNumber, } = updateUserDto;
         const user = await this.queryBus.execute(new find_user_by_id_query_1.FindUserByIdQuery(id));
         if (email != null) {
             user.email = email;
+        }
+        if (fullName != null) {
+            user.fullName = fullName;
+        }
+        if (phoneNumber != null) {
+            user.phoneNumber = phoneNumber;
         }
         if (isVerified != null) {
             user.isVerified = isVerified;

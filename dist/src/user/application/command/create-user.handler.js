@@ -20,7 +20,8 @@ const user_entity_1 = require("../../infrastructure/entity/user.entity");
 const user_utils_1 = require("../../utils/user.utils");
 const crate_user_command_1 = require("./crate-user.command");
 let CreateUserHandler = class CreateUserHandler {
-    constructor(userRepository) {
+    constructor(eventBus, userRepository) {
+        this.eventBus = eventBus;
         this.userRepository = userRepository;
     }
     async execute({ createUserDto }) {
@@ -39,7 +40,8 @@ let CreateUserHandler = class CreateUserHandler {
 exports.CreateUserHandler = CreateUserHandler;
 exports.CreateUserHandler = CreateUserHandler = __decorate([
     (0, cqrs_1.CommandHandler)(crate_user_command_1.CreateUserCommand),
-    __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.UserEntity)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(user_entity_1.UserEntity)),
+    __metadata("design:paramtypes", [cqrs_1.EventBus,
+        typeorm_2.Repository])
 ], CreateUserHandler);
 //# sourceMappingURL=create-user.handler.js.map

@@ -4,5 +4,9 @@ export declare class UpdateUserDto extends UpdateUserDto_base {
     deletedAt?: Date;
     isVerified?: boolean;
     lastLoggedInAt?: Date;
+    fullName?: string;
+    email?: string;
+    phoneNumber?: string;
+    token?: string;
 }
 export {};

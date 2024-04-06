@@ -1,9 +1,8 @@
-import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { CommandBus } from '@nestjs/cqrs';
 import { UpdateUserDto } from './dto/update-user.dto';
 export declare class UserController {
     private readonly commandBus;
-    private readonly queryBus;
-    constructor(commandBus: CommandBus, queryBus: QueryBus);
+    constructor(commandBus: CommandBus);
     update(userId: string, updateUserDto: UpdateUserDto): Promise<any>;
     delete(userId: string): Promise<any>;
 }

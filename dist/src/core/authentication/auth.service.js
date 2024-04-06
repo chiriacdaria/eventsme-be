@@ -51,11 +51,13 @@ let AuthService = class AuthService {
             email,
             sub: id,
         };
+        console.log('triggered');
         const accessToken = this.jwtService.sign(payload);
         const user = await this.queryBus.execute(new find_user_by_email_query_1.FindUserByEmailQuery(email));
         await this.commandBus.execute(new update_user_command_1.UpdateUserCommand(id, {
             lastLoggedInAt: new Date(),
         }));
+        console.log(accessToken);
         return {
             accessToken,
             user,
@@ -65,13 +67,15 @@ let AuthService = class AuthService {
         let user;
         try {
             user = await this.queryBus.execute(new find_user_by_email_query_1.FindUserByEmailQuery(email));
+            console.log(user);
             if (user.deletedAt != null) {
                 user = await this.commandBus.execute(new update_user_command_1.UpdateUserCommand(user.id, {
                     deletedAt: null,
                 }));
             }
             else {
-                throw new common_1.ConflictException(`User with e-mail address ${email} is already registered.`);
+                console.log('else');
+                throw new Error(`User with e-mail address ${email} is already registered.`);
             }
         }
         catch (err) {

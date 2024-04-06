@@ -20,13 +20,9 @@ __decorate([
     __metadata("design:type", String)
 ], UserEntity.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'last_name' }),
+    (0, typeorm_1.Column)({ default: '', name: 'full_name' }),
     __metadata("design:type", String)
-], UserEntity.prototype, "lastName", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ name: 'first_name' }),
-    __metadata("design:type", String)
-], UserEntity.prototype, "firstName", void 0);
+], UserEntity.prototype, "fullName", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
@@ -36,21 +32,9 @@ __decorate([
     __metadata("design:type", String)
 ], UserEntity.prototype, "password", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'text' }),
-    __metadata("design:type", String)
-], UserEntity.prototype, "bio", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'text' }),
-    __metadata("design:type", String)
-], UserEntity.prototype, "accounts", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ name: 'phone_number' }),
+    (0, typeorm_1.Column)({ default: '', name: 'phone_number' }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "phoneNumber", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ name: 'profile_picture', default: '' }),
-    __metadata("design:type", String)
-], UserEntity.prototype, "profilePicture", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'is_verified', default: false }),
     __metadata("design:type", Boolean)

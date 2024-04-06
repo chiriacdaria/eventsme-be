@@ -24,6 +24,7 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@ReqUser() user: UserEntity) {
+    console.log('triggered')
     const { accessToken } = await this.authService.login(user.email, user.id);
     return { user, accessToken };
   }
@@ -32,7 +33,6 @@ export class AuthController {
   async register(
     @Body() { email,  password }: AuthUserDto,
   ) {
-    console.log('register')
     const { accessToken, user } = await this.authService.register(
       email,
       password

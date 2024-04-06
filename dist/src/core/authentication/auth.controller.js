@@ -29,11 +29,11 @@ let AuthController = class AuthController {
         this.userRepository = userRepository;
     }
     async login(user) {
+        console.log('triggered');
         const { accessToken } = await this.authService.login(user.email, user.id);
         return { user, accessToken };
     }
     async register({ email, password }) {
-        console.log('register');
         const { accessToken, user } = await this.authService.register(email, password);
         return { user, accessToken };
     }

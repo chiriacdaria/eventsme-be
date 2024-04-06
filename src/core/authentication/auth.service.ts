@@ -1,6 +1,5 @@
 import { JwtService } from '@nestjs/jwt';
 import {
-  ConflictException,
   Injectable,
   NotFoundException,
   UnauthorizedException,
@@ -29,15 +28,15 @@ export class AuthService {
       email,
       sub: id,
     };
+    console.log('triggered')
     const accessToken = this.jwtService.sign(payload);
     const user = await this.queryBus.execute(new FindUserByEmailQuery(email));
     await this.commandBus.execute(
       new UpdateUserCommand(id, {
         lastLoggedInAt: new Date(),
-        //token: accessToken,
       }),
     );
-
+console.log(accessToken)
     return {
       accessToken,
       user,
@@ -46,28 +45,26 @@ export class AuthService {
 
   async register(
     email: string,
-    //firstName: string,
-    //lastName: string,
     password: string,
-    //phoneNumber: string,
   ): Promise<{ accessToken: string; user: UserEntity }> {
     let user: UserEntity;
     try {
       user = await this.queryBus.execute(new FindUserByEmailQuery(email));
+      console.log(user);
       if (user.deletedAt != null) {
         user = await this.commandBus.execute(
           new UpdateUserCommand(user.id, {
             deletedAt: null,
-            //password,
           }),
         );
-        //TODO: verify email and phone number in order to allow registration
+        //TODO: verify email in order to allow registration
         //} else if (!user.isVerified) {
         //  throw new ConflictException(
         //    `User with e-mail address ${email} has not completed the registration process.`,
         //  );
       } else {
-        throw new ConflictException(
+        console.log('else');
+        throw new Error(
           `User with e-mail address ${email} is already registered.`,
         );
       }

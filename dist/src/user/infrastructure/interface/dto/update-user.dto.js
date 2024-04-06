@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateUserDto = void 0;
 const class_validator_1 = require("class-validator");
 const swagger_1 = require("@nestjs/swagger");
+const phone_number_decorator_1 = require("../../../../core/database/decorators/phone-number.decorator");
 const create_user_dto_1 = require("./create-user.dto");
 class UpdateUserDto extends (0, swagger_1.PartialType)(create_user_dto_1.CreateUserDto) {
 }
@@ -31,4 +32,27 @@ __decorate([
     (0, class_validator_1.IsDate)(),
     __metadata("design:type", Date)
 ], UpdateUserDto.prototype, "lastLoggedInAt", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateUserDto.prototype, "fullName", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateUserDto.prototype, "email", void 0);
+__decorate([
+    (0, phone_number_decorator_1.IsPhoneNumberWithCountryCodes)([
+        { countryCode: '1', length: 11 },
+        { countryCode: '44', length: 12 },
+        { countryCode: '40', length: 12 },
+    ]),
+    __metadata("design:type", String)
+], UpdateUserDto.prototype, "phoneNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateUserDto.prototype, "token", void 0);
 //# sourceMappingURL=update-user.dto.js.map

@@ -17,7 +17,6 @@ import { JwtAuthGuard } from 'src/core/authentication/guards/jwt-auth.guard';
 export class UserController {
   constructor(
     private readonly commandBus: CommandBus,
-    private readonly queryBus: QueryBus,
   ) {}
 
   @Patch(':id')
@@ -25,6 +24,7 @@ export class UserController {
     @Param('id') userId: string,
     @Body() updateUserDto: UpdateUserDto,
   ) {
+    console.log('heyyy', userId, updateUserDto)
     return await this.commandBus.execute(
       new UpdateUserCommand(userId, updateUserDto),
     );

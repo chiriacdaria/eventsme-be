@@ -11,7 +11,7 @@ import { CreateUserCommand } from './crate-user.command';
 @CommandHandler(CreateUserCommand)
 export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
   constructor(
-    //private readonly eventBus: EventBus,
+    private readonly eventBus: EventBus,
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
   ) {}

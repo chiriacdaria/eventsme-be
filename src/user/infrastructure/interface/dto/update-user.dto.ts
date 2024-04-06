@@ -1,8 +1,8 @@
-import { IsBoolean, IsDate, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsDate, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { PartialType } from '@nestjs/swagger';
 
-import { CreateUserDto } from './create-user.dto';
 import { IsPhoneNumberWithCountryCodes } from 'src/core/database/decorators/phone-number.decorator';
+import { CreateUserDto } from './create-user.dto';
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
   @IsOptional()
@@ -17,22 +17,22 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   @IsDate()
   lastLoggedInAt?: Date;
 
-  //@IsOptional()
-  //@IsString()
-  //token?: string;
+  @IsOptional()
+  @IsString()
+  fullName?: string;
 
-  //@IsPhoneNumberWithCountryCodes([
-  //  { countryCode: '1', length: 11 }, // Example: Country code 1 (e.g., USA) with length 11
-  //  { countryCode: '44', length: 12 }, // Example: Country code 44 (e.g., UK) with length 12
-  //  { countryCode: '40', length: 12 }, // Romania (country code 40) with length 12
-  //])
-  //phoneNumber?: string;
+  @IsOptional()
+  @IsString()
+  email?: string;
 
-  //@IsOptional()
-  //@IsString()
-  //accounts?: string;
+  @IsPhoneNumberWithCountryCodes([
+    { countryCode: '1', length: 11 }, // Example: Country code 1 (e.g., USA) with length 11
+    { countryCode: '44', length: 12 }, // Example: Country code 44 (e.g., UK) with length 12
+    { countryCode: '40', length: 12 }, // Romania (country code 40) with length 12
+  ])
+  phoneNumber?: string;
 
-  //@IsOptional()
-  //@IsString()
-  //bio?: string;
+  @IsOptional()
+  @IsString()
+  token?:string
 }

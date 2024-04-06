@@ -20,11 +20,11 @@ const update_user_dto_1 = require("./dto/update-user.dto");
 const delete_user_command_1 = require("../../application/command/delete-user.command");
 const jwt_auth_guard_1 = require("../../../core/authentication/guards/jwt-auth.guard");
 let UserController = class UserController {
-    constructor(commandBus, queryBus) {
+    constructor(commandBus) {
         this.commandBus = commandBus;
-        this.queryBus = queryBus;
     }
     async update(userId, updateUserDto) {
+        console.log('heyyy', userId, updateUserDto);
         return await this.commandBus.execute(new update_user_command_1.UpdateUserCommand(userId, updateUserDto));
     }
     async delete(userId) {
@@ -50,7 +50,6 @@ __decorate([
 exports.UserController = UserController = __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Controller)('users'),
-    __metadata("design:paramtypes", [cqrs_1.CommandBus,
-        cqrs_1.QueryBus])
+    __metadata("design:paramtypes", [cqrs_1.CommandBus])
 ], UserController);
 //# sourceMappingURL=user.controller.js.map
